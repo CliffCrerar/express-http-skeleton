@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+/**
+ * module dependencies
+ */
+var app = require( '../app' );
+var config = require( '../app/config' );
+var fs = require( 'fs' );
+var http = require( 'http' );
+var https = require( 'https' );
+var normalizePort = require( 'normalize-port' );
+var onError = require( 'on-error' );
+var onListening = require( 'on-listening' );
+
+/**
+ * module variables
+ */
+var ip_address;
+var port;
+var server;
+var ssloptions;
+
+/**
+ * get port from environment and store in express
+ */
+port = normalizePort( config.port );
+app.set( 'port', port );
+
+/**
+ * get server ip from environment
+ */
+ip_address = config.ip_address.toString();
+
+/**
+ * ssl options
+ */
+if ( config.ssl ) {
+  ssloptions = {
+    cert: fs.readFileSync( config.ssl.crt ),
+    key: fs.readFileSync( config.ssl.key )
+  };
+}
+
+/**
+ * create HTTP server
+ */
+if ( ssloptions ) {
+  server = https.createServer( ssloptions, app );
+} else {
+  server = http.createServer( app );
+}
+
+/**
+ * listen on provided port, on all network interfaces
+ */
+server.listen( port, ip_address );
+server.on( 'error', onError );
+server.on( 'listening', onListening );

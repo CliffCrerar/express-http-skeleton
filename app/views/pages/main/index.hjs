@@ -1,0 +1,5 @@
+{{> html-open }}
+  <h1>express http skeleton</h1>
+  <p>demonstrate an api call to <a href="http://numbersapi.com/#42">numbers api</a> ( note this has slowed down this page’s load time )</p>
+  <blockquote>{{ trivia }}</blockquote>
+{{> html-close }}

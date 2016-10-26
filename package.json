@@ -1,0 +1,55 @@
+{
+  "name": "express-http-skeleton",
+  "version": "0.0.0",
+  "description": "an express http skeleton",
+  "author": "dan entous",
+  "license": "MIT",
+  "main": "app.js",
+  "scripts": {
+    "browserify": "browserify ./app/assets/js/app.js -o ./public/js/app.js",
+    "eslint": "eslint .",
+    "start": "npm run eslint && npm run browserify && npm run uglifyjs && nodemon ./bin/www & npm run watch",
+    "uglifyjs": "uglifyjs ./public/js/app.js -c drop_console=true,warnings=false -o ./public/js/app.min.js",
+    "watch": "watchify ./app/assets/js/app.js -o ./public/js/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dan-nl/express-http-skeleton.git"
+  },
+  "keywords": [
+    "express",
+    "http skeleton"
+  ],
+  "bugs": {
+    "url": "https://github.com/dan-nl/express-http-skeleton/issues"
+  },
+  "homepage": "https://github.com/dan-nl/express-http-skeleton#readme",
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "browserify": "13.1.1",
+    "compression": "1.6.2",
+    "cookie-parser": "1.4.3",
+    "cookie-session": "1.2.0",
+    "csurf": "1.9.0",
+    "error": "git://github.com/dan-nl/error.git",
+    "error-logger": "git://github.com/dan-nl/error-logger.git",
+    "express": "4.14.0",
+    "generic-request-options": "1.2.1",
+    "get-files": "git://github.com/dan-nl/get-files.git",
+    "hjs": "0.0.6",
+    "morgan": "1.7.0",
+    "node-sass-middleware": "0.9.8",
+    "normalize-port": "git://github.com/dan-nl/normalize-port.git",
+    "not-found": "git://github.com/dan-nl/not-found.git",
+    "on-error": "git://github.com/dan-nl/on-error.git",
+    "on-listening": "git://github.com/dan-nl/on-listening.git",
+    "request-as-bluebird": "2.0.2",
+    "uglify-js": "2.7.4"
+  },
+  "devDependencies": {
+    "eslint": "3.9.1",
+    "eslint-config-dan-nl": "git://github.com/dan-nl/eslint-config-dan-nl.git",
+    "nodemon": "1.11.0",
+    "watchify": "3.7.0"
+  }
+}
